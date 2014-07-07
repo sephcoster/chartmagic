@@ -105,7 +105,7 @@
 					<p>&nbsp;</p>
 					<h3 class="fragment roll-in">I'm gonna need a bigger coffee mug...</h3>
 				</section>
-				<section><h1>Enter <a href="http://dc-js.github.io/dc.js/">DC.JS</a> / <a href="http://d3js.org/">D3.JS</a></h1></section>
+				<section><h1>Enter <a href="http://square.github.io/crossfilter/">Crossfilter</a> + <a href="http://d3js.org/">D3.JS</a></h1></section>
 				<section>
 					<h1><a href="http://d3js.org">D3.js</a></h1>
 					<img src="img/D3js.png" height="325px"/>
@@ -126,50 +126,57 @@
 						<li>Uses sorted indexes and magic</li>
 					</ul>
 				</section>
-				<section><h2>With their powers combined...</h2></section>
+				<section><h2>These two APIs + magic =</h2></section>
 				<section>
-					<h2><a href="http://dc-js.github.io/dc.js/">Dimensional Charting.JS</a></h2>
+					<h2><a href="http://dc-js.github.io/dc.js/">Dimensional Charting.JS (dc.js)</a></h2>
 					<ul>
 						<li>Bridges D3 and Crossfilter APIs</li>
 						<li>Includes preconfigured charts</li>
 						<li>Allows full access to D3.js API for customization</li>
+						<li>Makes both D3 and Crossfilter EASIER to use.</li>
 					</ul>
 				</section>
-				<section><h4>An Example:</h4><iframe height="1000px" width="1024px" src="examples/dc-samples/foreign-assistance/index.html"></iframe></section>
+				<section><h4>An Example with Public USAID Data:</h4><iframe height="1000px" width="1024px" src="examples/dc-samples/foreign-assistance/index.html"></iframe></section>
 				<section>
 					<section>
-						<h3>How hard is that to build?</h3>
+						<h2>How hard is that to build?</h2>
+					</section>
+					<section>
 						<p>1) Get your data:</p>
-						<code class="javascript hljs">
-							d3.csv("data/foreignAssistance.csv", function (data) {
-							    data.forEach(function (d) {
-							        d.amount = +d.amount; // cast to numbers
-							    });						    
-						</code>
+						<pre><code>d3.csv("data/foreignAssistance.csv", function (data) {
+	data.forEach(function (d) {
+    d.amount = +d.amount; // cast to numbers
+});						    
+						</code></pre>
 					</section>
 					<section>
-						<p>Add it to crossfilter and then create a DC.JS "Group"</p>
-						<code class="javascript hljs ">
-							var facts = crossfilter(data);
-							var totalGroup = facts.groupAll().reduceSum(dc.pluck("amount"));
-						</code>
-						<p>Create a "dimension" of your data</p>
-						<code class="javascript hljs">
-						    var appropriationTypeDim = facts.dimension(dc.pluck('appropriationType'));
-						</code>
+						<p>2) Add it to crossfilter and then create a DC.JS "Group"</p>
+						<pre><code>
+	var facts = crossfilter(data);
+	var totalGroup = facts.groupAll()
+		.reduceSum(dc.pluck("amount"));
+						</code></pre>
+						<p>3) Create a "dimension" of your data</p>
+						<pre><code>
+    var appropriationTypeDim = facts.dimension(dc.pluck('appropriationType'));
+						</code></pre>
+						<p>4) Create a "reduction" of your data (sum, average, etc)</p>
+						<pre><code>
+var appropriationTypeGroupSum = appropriationTypeDim.group()
+	.reduceSum(dc.pluck("amount"));</code></pre>
 					</section>
 					<section>
-						<p>Create a chart</p>
-						<code class="javascript hljs">
-						    var pie = dc.pieChart("#dc-chart-appropriationType")
-						        .dimension(appropriationTypeDim)
-						        .group(appropriationTypeGroupSum)
-						        .width(200)
-						        .height(200)
-						        .radius(80)
-						        .ordinalColors(appropriationTypeColors);
-						</code>
-						<p>Rinse / Repeat with the same Group and different Dimensions</p>
+						<p>5) Create a chart</p>
+						<pre><code class="javascript hljs">
+    var pie = dc.pieChart("#dc-chart-appropriationType")
+        .dimension(appropriationTypeDim)
+        .group(appropriationTypeGroupSum)
+        .width(200)
+        .height(200)
+        .radius(80)
+        .ordinalColors(appropriationTypeColors);
+						</code></pre>
+						<p>6) Rinse / Repeat with the same Group and different Dimensions / Reductions</p>
 					</section>
 				</section>
 				<section>
