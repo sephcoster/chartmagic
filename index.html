@@ -137,6 +137,42 @@
 				</section>
 				<section><h4>An Example:</h4><iframe height="1000px" width="1024px" src="examples/dc-samples/foreign-assistance/index.html"></iframe></section>
 				<section>
+					<section>
+						<h3>How hard is that to build?</h3>
+						<p>1) Get your data:</p>
+						<code class="javascript hljs">
+							d3.csv("data/foreignAssistance.csv", function (data) {
+							    data.forEach(function (d) {
+							        d.amount = +d.amount; // cast to numbers
+							    });						    
+						</code>
+					</section>
+					<section>
+						<p>Add it to crossfilter and then create a DC.JS "Group"</p>
+						<code class="javascript hljs ">
+							var facts = crossfilter(data);
+							var totalGroup = facts.groupAll().reduceSum(dc.pluck("amount"));
+						</code>
+						<p>Create a "dimension" of your data</p>
+						<code class="javascript hljs">
+						    var appropriationTypeDim = facts.dimension(dc.pluck('appropriationType'));
+						</code>
+					</section>
+					<section>
+						<p>Create a chart</p>
+						<code class="javascript hljs">
+						    var pie = dc.pieChart("#dc-chart-appropriationType")
+						        .dimension(appropriationTypeDim)
+						        .group(appropriationTypeGroupSum)
+						        .width(200)
+						        .height(200)
+						        .radius(80)
+						        .ordinalColors(appropriationTypeColors);
+						</code>
+						<p>Rinse / Repeat with the same Group and different Dimensions</p>
+					</section>
+				</section>
+				<section>
 					<h2>Additional examples:</h2>
 					<p><a href="http://dc-js.github.io/dc.js/vc/index.html">US Venture Capital Landscape</a>
 					<p><a href="http://tw22.host.cs.st-andrews.ac.uk/meeting/coalcanada.html">Canadian Exports</a></p>
