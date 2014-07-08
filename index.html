@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Chart Magic - DC.js and D3.js</title>
+		<title>Chart Magic - Novel Tools for Visualization</title>
 
 		<meta name="description" content="A lightning talk about magical things">
 		<meta name="author" content="Seph Coster">
@@ -63,13 +63,12 @@
 					<p> &nbsp;</p>
 					<p> &nbsp;</p>
 
-					<h3 class="fragment">...But we can make it even better.</h3>
+					<h3 class="fragment">...But we can make it better with a couple tools.</h3>
 				</section>
 				<section>
-					<h2>Let's talk about some tools </br>that can help</h2>
+					<h2>Alright, so you need to make a chart?</h2>
 					<img src="img/lightning.gif"/>
 				</section>
-				<section><h2>Alright, so... we want some charts.</h2></section>
 				<section>
 					<h2>Easy(er) Route:</h2>
 					<h3>Get your static data into a chart</h3>
@@ -110,8 +109,7 @@
 					<h1><a href="http://d3js.org">D3.js</a></h1>
 					<img src="img/D3js.png" height="325px"/>
 					<ul>
-						<li>"Data-driven Documents"</li>
-						<li>Written by <a href="http://bl.ocks.org/mbostock">Mike Bostock</a></li>
+						<li>"Data-driven Documents" written by <a href="http://bl.ocks.org/mbostock">Mike Bostock</a></li>
 						<li>Extremely Powerful SVG / DOM manipulation</li>
 						<li>Very customizable</li>
 						<li>API takes some time to grok</li>
@@ -136,7 +134,7 @@
 						<li>Makes both D3 and Crossfilter EASIER to use.</li>
 					</ul>
 				</section>
-				<section><h4>An Example with Public USAID Data:</h4><iframe height="1000px" width="1024px" src="examples/dc-samples/foreign-assistance/index.html"></iframe></section>
+				<section><h4>An Example with Public USAID Data:</h4><iframe style="height: 1000px; width:100%; zoom:0" src="examples/dc-samples/foreign-assistance/index.html"></iframe></section>
 				<section>
 					<section>
 						<h2>How hard is that to build?</h2>
@@ -204,6 +202,7 @@ var appropriationTypeGroupSum = appropriationTypeDim.group()
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
+				width: 1200,
 				controls: true,
 				progress: true,
 				history: true,
