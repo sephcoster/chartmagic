@@ -98,7 +98,7 @@
 						<li class="fragment roll-in">Apply filters across charts</li>
 						<li class="fragment roll-in">Handles lots of data quickly</li>
 						<li class="fragment roll-in">Customizable with good APIs</li>
-						<li class="fragment roll-in">IE-9 compatible? COME ON</li>
+						<li class="fragment roll-in">IE-9 compatible? COME ON (though may require a shim)</li>
 					</ul>
 					<p>&nbsp;</p>
 					<p>&nbsp;</p>
@@ -119,9 +119,10 @@
 					<h1><a href="http://square.github.io/crossfilter/">Crossfilter</a></h1>
 					<ul>
 						<li>Extremely fast, coordinated views</li>
-						<li>Written by the good people at Square</li>
+						<li>Written by the good people at Square (and Mike Bostock)</li>
 						<li>Multivariate, large datasets in the browser</li>
 						<li>Uses sorted indexes and magic</li>
+						<li>Client-side map / reduce with typed arrays</li>
 					</ul>
 				</section>
 				<section><h2>These two APIs + magic =</h2></section>
@@ -130,7 +131,7 @@
 					<ul>
 						<li>Bridges D3 and Crossfilter APIs</li>
 						<li>Includes preconfigured charts</li>
-						<li>Allows full access to D3.js API for customization</li>
+						<li>Allows full access to D3/Crossfilter APIs</li>
 						<li>Makes both D3 and Crossfilter EASIER to use.</li>
 					</ul>
 				</section>
@@ -148,7 +149,7 @@
 						</code></pre>
 					</section>
 					<section>
-						<p>2) Add it to crossfilter and then create a DC.JS "Group"</p>
+						<p>2) Add it to crossfilter and then create a "Group"</p>
 						<pre><code>
 	var facts = crossfilter(data);
 	var totalGroup = facts.groupAll()
@@ -188,10 +189,6 @@ var appropriationTypeGroupSum = appropriationTypeDim.group()
 				<section>
 					<h1>THE END</h1>
 					<h3>By Seph Coster / github.com/sephcoster</h3>
-				</section>
-				<section>
-					<h3>A quick update for those keeping score:</h3>
-					<iframe height="1000px" width="100%" src="http://www.espnfc.us/gamecast/383242/gamecast.html"></iframe>
 				</section>
 			</div>
 
